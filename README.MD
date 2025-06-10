@@ -1,73 +1,92 @@
-# Torre de Hanói 🗼
+# Torre de Hanói 🗼 — Estrutura de Dados em C
 
-Este projeto é uma simulação do clássico jogo **Torre de Hanói**, desenvolvido como trabalho final da disciplina de **Estrutura de Dados**. O objetivo é demonstrar, de forma didática e interativa, o uso de **pilhas**, **listas encadeadas** e **arquivos de texto**, aplicando os conceitos fundamentais da disciplina em um problema consagrado da computação.
-
----
-
-## 🔧 Tecnologias Utilizadas
-
-- 💻 Linguagem: `C` 
-- 🧠 Estruturas de Dados:
-  - **Pilha**: representa as torres do jogo
-  - **Lista Encadeada**: armazena o histórico dos movimentos realizados
-  - **Arquivo de Texto**: salva o histórico após a finalização da partida
-- 🖥️ Interface: Terminal (modo texto)
+Este repositório contém a implementação completa da clássica **Torre de Hanói**, desenvolvida em linguagem **C** como projeto final da disciplina de **Estrutura de Dados**. O programa simula, no terminal, o deslocamento dos discos entre torres utilizando **estruturas de pilhas**, **listas encadeadas** para o histórico de jogadas e **arquivos de texto** para persistência dos dados. Todo o desenvolvimento segue boas práticas de **versionamento com Git**.
 
 ---
 
-## 🎯 Objetivos do Projeto
+## 🔍 Visão Geral
 
-- Implementar a simulação da Torre de Hanói com 3 torres (A, B e C) e N discos.
-- Utilizar **pilhas** para representar as torres e garantir as regras do jogo.
-- Registrar cada movimento em uma **lista encadeada**, que será exibida ao final.
-- Salvar o histórico em um **arquivo `.txt`** para análise posterior.
-- Reforçar conceitos de **manipulação de ponteiros**, **alocação dinâmica** e **estruturas de dados lineares**.
+O projeto tem como foco aplicar, na prática, os conceitos aprendidos ao longo da disciplina. A proposta foi simular o desafio lógico das torres com o uso de ponteiros, estruturas dinâmicas e organização modular do código em C.
+
+### Funcionalidades:
+
+- Inicialização de torres com número de discos definido pelo usuário.
+- Movimentação automática dos discos via algoritmo recursivo.
+- Registro de cada movimento em uma **lista encadeada**.
+- Salvamento do histórico completo em um arquivo `movimentos.txt`.
+- Exibição passo a passo no **terminal**, com visualização clara dos movimentos.
+- Estrutura organizada em múltiplos arquivos `.c` e `.h`, com uso de Git para controle de versões.
 
 ---
 
-## ▶️ Como Executar
+## 🛠️ Tecnologias e Estruturas
 
-1. Clone este repositório:
+- **Linguagem**: C (padrão ANSI)
+- **Estruturas usadas**:
+  - `Pilha` (para as torres A, B e C)
+  - `Lista encadeada` (para armazenar os movimentos)
+  - `Arquivo de texto` (registro final dos movimentos)
+- **Ferramentas**:
+  - Terminal (para entrada/saída)
+  - GCC (compilador)
+  - Git (versionamento)
+  - Makefile (opcional, se estiver usando)
+
+---
+
+## 🚀 Como Executar
+
+1. Clone o repositório:
    ```bash
    git clone https://github.com/seuusuario/torre-de-hanoi.git
    cd torre-de-hanoi
-Compile o código (para C):
+Compile com gcc:
 
-"bash
+bash
+Copiar
+Editar
+gcc main.c pilha.c lista.c -o hanoi
+Execute no terminal:
 
-gcc main.c -o hanoi
+bash
+Copiar
+Editar
 ./hanoi
-Ou execute diretamente se for Python:"
+Após a execução, verifique o arquivo movimentos.txt para o histórico.
 
+📁 Estrutura do Repositório
 bash
-📂 Estrutura do Projeto
-bash
-
+Copiar
+Editar
 torre-de-hanoi/
-├── main.c               # Arquivo principal do programa
-├── pilha.c / pilha.h    # Implementação da estrutura de pilha
-├── lista.c / lista.h    # Implementação da lista encadeada
-├── utils.c / utils.h    # Funções auxiliares
-├── movimentos.txt       # Arquivo gerado com o histórico dos movimentos
-└── README.md            # Documentação do projeto
-🧠 Lógica do Jogo
-Apenas um disco pode ser movido por vez.
-
-Um disco só pode ser colocado sobre outro maior.
-
-O objetivo é mover todos os discos da torre A para a torre C usando a torre B como auxiliar, seguindo as regras.
-
+├── main.c              # Arquivo principal (controle da execução)
+├── pilha.c / pilha.h   # Implementação das pilhas (torres)
+├── lista.c / lista.h   # Implementação da lista encadeada (histórico)
+├── movimentos.txt      # Saída final dos movimentos realizados
+├── .git/               # Pasta de versionamento Git
+├── README.md           # Este arquivo
+└── (opcional) Makefile
 📜 Exemplo de Saída
-python-repl
+css
 Copiar
 Editar
 Movendo disco 1 de A para C
 Movendo disco 2 de A para B
 Movendo disco 1 de C para B
 ...
-Movimentos salvos em 'movimentos.txt'
-📘 Créditos
-Projeto desenvolvido por [Seu Nome] como parte do curso de Estrutura de Dados - [Nome da Instituição/Professor].
+Total de movimentos: 7
+Histórico salvo em 'movimentos.txt'
+📌 Observações
+O projeto foi versionado desde sua estrutura inicial.
 
-📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Commits foram organizados por etapas: estrutura de dados, lógica de jogo, interface terminal, integração de histórico e salvamento em arquivo.
+
+Ideal para estudantes de ciência da computação, engenharia ou cursos técnicos que queiram aprender algoritmos recursivos e manipulação de ponteiros em C.
+
+👨‍💻 Autor
+Desenvolvido por [Seu Nome]
+Disciplina de Estrutura de Dados — [Nome da Instituição ou Professor]
+Ano: 2025
+
+📝 Licença
+Distribuído sob a licença MIT. Veja o arquivo LICENSE para mais informações.
