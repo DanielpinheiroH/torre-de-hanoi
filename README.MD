@@ -33,16 +33,14 @@ Este projeto é uma simulação do clássico jogo **Torre de Hanói**, desenvolv
    cd torre-de-hanoi
 Compile o código (para C):
 
-bash
-Copiar
-Editar
+"bash
+
 gcc main.c -o hanoi
 ./hanoi
-Ou execute diretamente se for Python:
+Ou execute diretamente se for Python:"
 
 bash
-Copiar
-Editar
+
 python3 main.py
 📂 Estrutura do Projeto
 bash
