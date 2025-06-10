@@ -6,7 +6,7 @@ Este projeto é uma simulação do clássico jogo **Torre de Hanói**, desenvolv
 
 ## 🔧 Tecnologias Utilizadas
 
-- 💻 Linguagem: `C` (ou substitua pela sua linguagem, como Python/Java/C++)
+- 💻 Linguagem: `C` 
 - 🧠 Estruturas de Dados:
   - **Pilha**: representa as torres do jogo
   - **Lista Encadeada**: armazena o histórico dos movimentos realizados
@@ -40,12 +40,9 @@ gcc main.c -o hanoi
 Ou execute diretamente se for Python:"
 
 bash
-
-python3 main.py
 📂 Estrutura do Projeto
 bash
-Copiar
-Editar
+
 torre-de-hanoi/
 ├── main.c               # Arquivo principal do programa
 ├── pilha.c / pilha.h    # Implementação da estrutura de pilha
