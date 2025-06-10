@@ -1,92 +1,113 @@
-# Torre de Hanói 🗼 — Estrutura de Dados em C
+# Torre de Hanói 🗼 — Projeto em C (GitHub)
 
-Este repositório contém a implementação completa da clássica **Torre de Hanói**, desenvolvida em linguagem **C** como projeto final da disciplina de **Estrutura de Dados**. O programa simula, no terminal, o deslocamento dos discos entre torres utilizando **estruturas de pilhas**, **listas encadeadas** para o histórico de jogadas e **arquivos de texto** para persistência dos dados. Todo o desenvolvimento segue boas práticas de **versionamento com Git**.
-
----
-
-## 🔍 Visão Geral
-
-O projeto tem como foco aplicar, na prática, os conceitos aprendidos ao longo da disciplina. A proposta foi simular o desafio lógico das torres com o uso de ponteiros, estruturas dinâmicas e organização modular do código em C.
-
-### Funcionalidades:
-
-- Inicialização de torres com número de discos definido pelo usuário.
-- Movimentação automática dos discos via algoritmo recursivo.
-- Registro de cada movimento em uma **lista encadeada**.
-- Salvamento do histórico completo em um arquivo `movimentos.txt`.
-- Exibição passo a passo no **terminal**, com visualização clara dos movimentos.
-- Estrutura organizada em múltiplos arquivos `.c` e `.h`, com uso de Git para controle de versões.
+Este repositório apresenta sua implementação da **Torre de Hanói**, feita em **C**, com execução via terminal. O código utiliza **pilhas** e **listas encadeadas** para controle de torres e registro de movimentos, respectivamente. Está estruturado de forma modular, com versionamento via **Git**.
 
 ---
 
-## 🛠️ Tecnologias e Estruturas
+## 📦 Estrutura do repositório
 
-- **Linguagem**: C (padrão ANSI)
-- **Estruturas usadas**:
-  - `Pilha` (para as torres A, B e C)
-  - `Lista encadeada` (para armazenar os movimentos)
-  - `Arquivo de texto` (registro final dos movimentos)
-- **Ferramentas**:
-  - Terminal (para entrada/saída)
-  - GCC (compilador)
-  - Git (versionamento)
-  - Makefile (opcional, se estiver usando)
-
----
-
-## 🚀 Como Executar
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seuusuario/torre-de-hanoi.git
-   cd torre-de-hanoi
-Compile com gcc:
-
-bash
-Copiar
-Editar
-gcc main.c pilha.c lista.c -o hanoi
-Execute no terminal:
-
-bash
-Copiar
-Editar
-./hanoi
-Após a execução, verifique o arquivo movimentos.txt para o histórico.
-
-📁 Estrutura do Repositório
-bash
-Copiar
-Editar
+```text
 torre-de-hanoi/
-├── main.c              # Arquivo principal (controle da execução)
-├── pilha.c / pilha.h   # Implementação das pilhas (torres)
-├── lista.c / lista.h   # Implementação da lista encadeada (histórico)
-├── movimentos.txt      # Saída final dos movimentos realizados
-├── .git/               # Pasta de versionamento Git
-├── README.md           # Este arquivo
-└── (opcional) Makefile
-📜 Exemplo de Saída
-css
-Copiar
-Editar
+├── main.c              # Função principal e interface de execução
+├── pilha.c / pilha.h   # Estrutura de dados: pilhas para torres
+├── lista.c / lista.h   # Registro de histórico via lista encadeada
+├── movimentos.txt      # Gerado ao final da execução (registro dos movimentos)
+├── .git/               # Histórico de commits e versionamento
+└── README.md           # Documentação atualizada
+🛠️ Tecnologias & Conceitos
+Linguagem: ANSI C
+
+Estruturas:
+
+Pilha → representação das torres A, B e C
+
+Lista encadeada → armazena sequência de movimentos
+
+Arquivo texto → registra os movimentos realizados
+
+Ferramentas:
+
+Compiler: GCC
+
+Git: controle de versão
+
+Execução via terminal
+
+⚙️ Como compilar e rodar
+Faça clone do repositório:
+
+bash
+
+git clone https://github.com/DanielpinheiroH/torre-de-hanoi.git
+cd torre-de-hanoi
+Compile:
+
+bash
+
+gcc main.c pilha.c lista.c -o hanoi
+Execute:
+
+bash
+
+./hanoi
+Ao término, veja movimentos.txt:
+
+bash
+
+cat movimentos.txt
+🔍 Funcionalidades
+Recebe via terminal o número de discos (ex: 3, 4, 5…).
+
+Executa algoritmo recursivo para mover discos.
+
+Grava cada jogada na lista encadeada, exibindo-a ao final.
+
+Gera movimentos.txt com todas as instruções.
+
+Demonstra boas práticas de modularização e versionamento.
+
+🗂️ Histórico de versões (Git)
+Este projeto evoluiu com commits estruturados, por exemplo:
+
+Início: criação das estruturas de dados (pilhas, lista).
+
+Lógica do Jogo: implementação do algoritmo recursivo e terminal.
+
+Histórico: gravação em lista e arquivo texto.
+
+Refatoração: modularização, comentários e limpeza de código.
+
+📜 Exemplo de saída
+text
+
+Entre com o número de discos: 3
 Movendo disco 1 de A para C
 Movendo disco 2 de A para B
 Movendo disco 1 de C para B
+Movendo disco 3 de A para C
+Movendo disco 1 de B para A
+Movendo disco 2 de B para C
+Movendo disco 1 de A para C
+
+Histórico de movimentos:
+1: A -> C
+2: A -> B
 ...
-Total de movimentos: 7
-Histórico salvo em 'movimentos.txt'
-📌 Observações
-O projeto foi versionado desde sua estrutura inicial.
 
-Commits foram organizados por etapas: estrutura de dados, lógica de jogo, interface terminal, integração de histórico e salvamento em arquivo.
+Movimentos salvos em 'movimentos.txt'
+✅ Próximas melhorias (opcional)
+Adicionar Makefile para automatizar compilação (make build, make clean).
 
-Ideal para estudantes de ciência da computação, engenharia ou cursos técnicos que queiram aprender algoritmos recursivos e manipulação de ponteiros em C.
+Permitir entrada de arquivo com múltiplos testes.
 
-👨‍💻 Autor
-Desenvolvido por [Seu Nome]
-Disciplina de Estrutura de Dados — [Nome da Instituição ou Professor]
-Ano: 2025
+Implementar interface web ou gráfica.
+
+Incluir testes unitários para verificar integridade das estruturas.
 
 📝 Licença
-Distribuído sob a licença MIT. Veja o arquivo LICENSE para mais informações.
+Projeto sob licença MIT. Veja LICENSE para detalhes.
+
+👨‍💻 Contato
+Daniel Pinheiro — criador e responsável pelo projeto.
+Disciplina: Estrutura de Dados • 2025
+
