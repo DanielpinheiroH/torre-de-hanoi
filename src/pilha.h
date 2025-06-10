@@ -17,6 +17,6 @@ int desempilhar(Pilha* pilha);
 int topo(Pilha* pilha);
 int esta_vazia(Pilha* pilha);
 void liberar_pilha(Pilha* pilha);
-void imprimir_pilha(Pilha* pilha, int id);
+void imprimir_pilhas_lado_a_lado(Pilha* t1, Pilha* t2, Pilha* t3, int max_altura);
 
 #endif

@@ -1,11 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <string.h>
 #include "hanoi.h"
+#include "lista_historico.h"
+
+extern void imprimir_pilhas_lado_a_lado(Pilha* t1, Pilha* t2, Pilha* t3, int max_altura);
 
 void iniciar_jogo(int num_discos) {
     Pilha* t1 = criar_pilha();
     Pilha* t2 = criar_pilha();
     Pilha* t3 = criar_pilha();
+    ListaHistorico* historico = criar_lista();
 
     for (int i = num_discos; i >= 1; i--) {
         empilhar(t1, i);
@@ -14,8 +20,9 @@ void iniciar_jogo(int num_discos) {
     int origem, destino;
     int movimentos = 0;
 
-    while (t3->tamanho != num_discos) {
-        exibir_torres(t1, t2, t3);
+    // CORREÇÃO: jogo termina quando T2 ou T3 tem todos os discos
+    while (t2->tamanho != num_discos && t3->tamanho != num_discos) {
+        imprimir_pilhas_lado_a_lado(t1, t2, t3, num_discos);
         printf("Movimento #%d\n", movimentos + 1);
         printf("Digite origem (1, 2 ou 3): ");
         scanf("%d", &origem);
@@ -33,11 +40,14 @@ void iniciar_jogo(int num_discos) {
         }
     }
 
-    printf("Parabéns! Você resolveu com %d movimentos.\n", movimentos);
+    imprimir_pilhas_lado_a_lado(t1, t2, t3, num_discos);
+    printf("\n>>> Jogo concluído com sucesso! <<<\n");
+    printf("Você resolveu com %d movimentos.\n", movimentos);
 
     liberar_pilha(t1);
     liberar_pilha(t2);
     liberar_pilha(t3);
+    liberar_lista(historico);
 }
 
 void mover_disco(Pilha* origem, Pilha* destino) {
@@ -49,12 +59,4 @@ int pode_mover(Pilha* origem, Pilha* destino) {
     if (esta_vazia(origem)) return 0;
     if (esta_vazia(destino)) return 1;
     return topo(origem) < topo(destino);
-}
-
-void exibir_torres(Pilha* t1, Pilha* t2, Pilha* t3) {
-    printf("\n=== ESTADO DAS TORRES ===\n");
-    imprimir_pilha(t1, 1);
-    imprimir_pilha(t2, 2);
-    imprimir_pilha(t3, 3);
-    printf("=========================\n\n");
 }
