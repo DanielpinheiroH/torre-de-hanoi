@@ -3,11 +3,11 @@
 
 typedef struct Nodo {
     int disco;
-    struct Nodo *prox;
+    struct Nodo* prox;
 } Nodo;
 
 typedef struct Pilha {
-    Nodo *topo;
+    Nodo* topo;
     int tamanho;
 } Pilha;
 
@@ -17,6 +17,6 @@ int desempilhar(Pilha* pilha);
 int topo(Pilha* pilha);
 int esta_vazia(Pilha* pilha);
 void liberar_pilha(Pilha* pilha);
-void imprimir_pilhas_lado_a_lado(Pilha* t1, Pilha* t2, Pilha* t3, int max_altura);
+void imprimir_pilhas_lado_a_lado(Pilha* t1, Pilha* t2, Pilha* t3, int altura_maxima);
 
 #endif

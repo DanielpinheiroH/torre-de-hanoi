@@ -13,6 +13,10 @@ void iniciar_jogo(int num_discos) {
     Pilha* t3 = criar_pilha();
     ListaHistorico* historico = criar_lista();
 
+    char nome[50];
+    printf("Digite seu nome: ");
+    scanf(" %[^\n]", nome);  // lê nome com espaços
+
     for (int i = num_discos; i >= 1; i--) {
         empilhar(t1, i);
     }
@@ -20,7 +24,6 @@ void iniciar_jogo(int num_discos) {
     int origem, destino;
     int movimentos = 0;
 
-    // CORREÇÃO: jogo termina quando T2 ou T3 tem todos os discos
     while (t2->tamanho != num_discos && t3->tamanho != num_discos) {
         imprimir_pilhas_lado_a_lado(t1, t2, t3, num_discos);
         printf("Movimento #%d\n", movimentos + 1);
@@ -43,6 +46,15 @@ void iniciar_jogo(int num_discos) {
     imprimir_pilhas_lado_a_lado(t1, t2, t3, num_discos);
     printf("\n>>> Jogo concluído com sucesso! <<<\n");
     printf("Você resolveu com %d movimentos.\n", movimentos);
+
+    // Gerar data/hora
+    time_t agora = time(NULL);
+    struct tm* tm_info = localtime(&agora);
+    char data[30];
+    strftime(data, sizeof(data), "%d/%m/%Y %H:%M:%S", tm_info);
+
+    adicionar_registro(historico, nome, movimentos, num_discos, data);
+    salvar_em_arquivo(historico, "../dados/historico.txt");
 
     liberar_pilha(t1);
     liberar_pilha(t2);
