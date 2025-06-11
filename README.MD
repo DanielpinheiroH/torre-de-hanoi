@@ -1,113 +1,111 @@
 # Torre de Hanói 🗼 — Projeto em C (GitHub)
 
-Este repositório apresenta sua implementação da **Torre de Hanói**, feita em **C**, com execução via terminal. O código utiliza **pilhas** e **listas encadeadas** para controle de torres e registro de movimentos, respectivamente. Está estruturado de forma modular, com versionamento via **Git**.
+Este repositório apresenta a implementação da **Torre de Hanói**, feita em **C**, com execução via terminal. O código utiliza **pilhas** e **listas encadeadas** para controle das torres e registro de partidas, e está estruturado de forma modular, com versionamento via **Git**.
 
 ---
 
-## 📦 Estrutura do repositório
+## 📦 Estrutura do Repositório
 
 ```text
 torre-de-hanoi/
-├── main.c              # Função principal e interface de execução
-├── pilha.c / pilha.h   # Estrutura de dados: pilhas para torres
-├── lista.c / lista.h   # Registro de histórico via lista encadeada
-├── movimentos.txt      # Gerado ao final da execução (registro dos movimentos)
-├── .git/               # Histórico de commits e versionamento
-└── README.md           # Documentação atualizada
+├── src/
+│   ├── main.c              # Função principal e menu interativo
+│   ├── hanoi.c / hanoi.h   # Lógica principal do jogo
+│   ├── pilha.c / pilha.h   # Estrutura de dados: pilhas para torres
+│   ├── lista_historico.c / lista_historico.h  # Registro de partidas com nome e data
+├── dados/
+│   └── historico.txt       # Arquivo gerado com histórico de partidas
+├── .git/                   # Histórico de versionamento
+├── .gitignore
+└── README.md
 🛠️ Tecnologias & Conceitos
-Linguagem: ANSI C
+Linguagem: C (padrão ANSI)
 
-Estruturas:
+Estruturas utilizadas:
 
-Pilha → representação das torres A, B e C
+Pilha → representação das torres T1, T2 e T3
 
-Lista encadeada → armazena sequência de movimentos
-
-Arquivo texto → registra os movimentos realizados
+Lista encadeada → armazena registros de partidas (jogador, discos, data, movimentos)
 
 Ferramentas:
 
-Compiler: GCC
+GCC para compilação
 
-Git: controle de versão
+Git para controle de versão
 
 Execução via terminal
 
-⚙️ Como compilar e rodar
-Faça clone do repositório:
+⚙️ Como Compilar e Executar
+Clone o repositório:
 
-bash
+#bash#
 
 git clone https://github.com/DanielpinheiroH/torre-de-hanoi.git
-cd torre-de-hanoi
-Compile:
+cd torre-de-hanoi/src
+Compile o projeto:
 
-bash
+#bash#
 
-gcc main.c pilha.c lista.c -o hanoi
-Execute:
+gcc -o hanoi.exe main.c hanoi.c pilha.c lista_historico.c
+Execute no terminal:
 
-bash
+#bash#
+./hanoi.exe
+🔍 Funcionalidades do Projeto
+✅ Interface interativa via terminal
+✅ Menu com 3 opções:
 
-./hanoi
-Ao término, veja movimentos.txt:
+1 - Jogar: você informa seu nome e o número de discos, e joga a Torre de Hanói com visualização gráfica.
 
-bash
+2 - Ver histórico: mostra as partidas registradas no arquivo historico.txt.
 
-cat movimentos.txt
-🔍 Funcionalidades
-Recebe via terminal o número de discos (ex: 3, 4, 5…).
+3 - Sair
 
-Executa algoritmo recursivo para mover discos.
+✅ Impressão gráfica das torres com alinhamento central dos discos
+✅ Verificação de jogadas válidas e invalidação de movimentos incorretos
+✅ Registro do nome do jogador, data/hora, discos e número de movimentos
+✅ Histórico salvo automaticamente em dados/historico.txt
 
-Grava cada jogada na lista encadeada, exibindo-a ao final.
-
-Gera movimentos.txt com todas as instruções.
-
-Demonstra boas práticas de modularização e versionamento.
-
-🗂️ Histórico de versões (Git)
-Este projeto evoluiu com commits estruturados, por exemplo:
-
-Início: criação das estruturas de dados (pilhas, lista).
-
-Lógica do Jogo: implementação do algoritmo recursivo e terminal.
-
-Histórico: gravação em lista e arquivo texto.
-
-Refatoração: modularização, comentários e limpeza de código.
-
-📜 Exemplo de saída
+📜 Exemplo de Saída (jogo com 3 discos)
 text
 
-Entre com o número de discos: 3
-Movendo disco 1 de A para C
-Movendo disco 2 de A para B
-Movendo disco 1 de C para B
-Movendo disco 3 de A para C
-Movendo disco 1 de B para A
-Movendo disco 2 de B para C
-Movendo disco 1 de A para C
+Digite o número de discos: 3
+Digite seu nome: Daniel
 
-Histórico de movimentos:
-1: A -> C
-2: A -> B
-...
+=== ESTADO DAS TORRES ===
 
-Movimentos salvos em 'movimentos.txt'
-✅ Próximas melhorias (opcional)
-Adicionar Makefile para automatizar compilação (make build, make clean).
+   *|*           |           |
+  **|**          |           |
+ ***|***         |           |
+=======     =======     =======
+   T1           T2           T3
 
-Permitir entrada de arquivo com múltiplos testes.
+Movimento #1
+Digite origem (1, 2 ou 3): 
+🗂️ Histórico de Versões (Git)
+v1.0: Estruturas de dados (pilhas, lista)
 
-Implementar interface web ou gráfica.
+v1.1: Lógica básica do jogo
 
-Incluir testes unitários para verificar integridade das estruturas.
+v2.0: Menu, nome do jogador, histórico com data
+
+v2.1: Visualização gráfica ajustada
+
+v2.2: Refatoração final, git organizado
+
+✅ Próximas Melhorias
+ Adicionar Makefile para facilitar compilação
+
+ Adicionar testes unitários
+
+ Adicionar opção de desfazer jogadas
+
+ Interface gráfica ou web
 
 📝 Licença
 Projeto sob licença MIT. Veja LICENSE para detalhes.
 
-👨‍💻 Contato
-Daniel Pinheiro — criador e responsável pelo projeto.
-Disciplina: Estrutura de Dados • 2025
-
+👨‍💻 Autor
+Daniel Pinheiro, José leonardo, 
+Curso: Engenharia de softare — 2025
+GitHub: DanielpinheiroH
