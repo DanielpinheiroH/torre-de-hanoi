@@ -15,7 +15,7 @@ void iniciar_jogo(int num_discos) {
 
     char nome[50];
     printf("Digite seu nome: ");
-    scanf(" %[^\n]", nome);  // lê nome com espaços
+    scanf(" %[^\n]", nome);
 
     for (int i = num_discos; i >= 1; i--) {
         empilhar(t1, i);
@@ -39,15 +39,15 @@ void iniciar_jogo(int num_discos) {
             mover_disco(p1, p2);
             movimentos++;
         } else {
-            printf("Movimento inválido!\n");
+            printf("Movimento invalido!\n");
         }
     }
 
     imprimir_pilhas_lado_a_lado(t1, t2, t3, num_discos);
-    printf("\n>>> Jogo concluído com sucesso! <<<\n");
-    printf("Você resolveu com %d movimentos.\n", movimentos);
+    printf("\n>>> Jogo concluido com sucesso! <<<\n");
+    printf("Voce resolveu com %d movimentos.\n", movimentos);
 
-    // Gerar data/hora
+    // Data/hora
     time_t agora = time(NULL);
     struct tm* tm_info = localtime(&agora);
     char data[30];

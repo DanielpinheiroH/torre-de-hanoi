@@ -3,28 +3,37 @@
 #include <string.h>
 #include "lista_historico.h"
 
+// Cria e inicializa uma nova lista de histórico
 ListaHistorico* criar_lista() {
     ListaHistorico* lista = malloc(sizeof(ListaHistorico));
-    lista->inicio = NULL;
+    if (lista != NULL) {
+        lista->inicio = NULL;
+    }
     return lista;
 }
 
+// Adiciona um novo registro à lista de histórico
 void adicionar_registro(ListaHistorico* lista, const char* nome, int movimentos, int discos, const char* data) {
     Registro* novo = malloc(sizeof(Registro));
-    strncpy(novo->nome, nome, 49);
-    novo->nome[49] = '\0'; // segurança
+    if (!novo) return;
+
+    strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
+    novo->nome[sizeof(novo->nome) - 1] = '\0';
     novo->movimentos = movimentos;
     novo->discos = discos;
-    strncpy(novo->data, data, 29);
-    novo->data[29] = '\0';
+
+    strncpy(novo->data, data, sizeof(novo->data) - 1);
+    novo->data[sizeof(novo->data) - 1] = '\0';
+
     novo->prox = lista->inicio;
     lista->inicio = novo;
 }
 
+// Salva o histórico da lista em um arquivo .txt
 void salvar_em_arquivo(ListaHistorico* lista, const char* caminho_arquivo) {
     FILE* arquivo = fopen(caminho_arquivo, "a");
     if (!arquivo) {
-        perror("Erro ao abrir arquivo de histórico");
+        perror("Erro ao abrir arquivo de historico");
         return;
     }
 
@@ -38,6 +47,7 @@ void salvar_em_arquivo(ListaHistorico* lista, const char* caminho_arquivo) {
     fclose(arquivo);
 }
 
+// Libera toda a memória alocada para a lista
 void liberar_lista(ListaHistorico* lista) {
     Registro* atual = lista->inicio;
     while (atual != NULL) {

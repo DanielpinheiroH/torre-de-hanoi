@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "hanoi.h"
 
-// Funcao auxiliar para mostrar o historico
 void mostrar_historico() {
     FILE* arquivo = fopen("../dados/historico.txt", "r");
     if (!arquivo) {
@@ -20,8 +19,7 @@ void mostrar_historico() {
 }
 
 int main() {
-    int opcao;
-    int discos;
+    int opcao, discos;
 
     do {
         printf("\n===== TORRE DE HANOI =====\n");
@@ -31,27 +29,25 @@ int main() {
         printf("===========================\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
+        fflush(stdin); // evita erro de leitura com nome depois
 
         switch (opcao) {
             case 1:
                 printf("Digite o numero de discos (minimo 3): ");
                 scanf("%d", &discos);
+                fflush(stdin);
                 if (discos < 3) {
                     printf("Numero minimo de discos e 3.\n");
                 } else {
                     iniciar_jogo(discos);
                 }
                 break;
-
             case 2:
                 mostrar_historico();
                 break;
-
             case 3:
                 printf("Saindo do jogo...\n");
                 exit(0);
-                break;
-
             default:
                 printf("Opcao invalida. Tente novamente.\n");
         }
