@@ -105,7 +105,4 @@ v2.2: Refatoração final, git organizado
 📝 Licença
 Projeto sob licença MIT. Veja LICENSE para detalhes.
 
-👨‍💻 Autores
-Daniel Pinheiro, José leonardo, lucas barcelos e Cauã Ferreira
-Curso: Engenharia de softare — 2025
-GitHub: "DanielpinheiroH" "leonardomfr2" "0828378" "valoisJoao" "luckscelos"
+
