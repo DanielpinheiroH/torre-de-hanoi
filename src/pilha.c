@@ -45,66 +45,60 @@ void liberar_pilha(Pilha* pilha) {
 }
 
 void imprimir_pilhas_lado_a_lado(Pilha* t1, Pilha* t2, Pilha* t3, int max_altura) {
-    Nodo* discos1[MAX_ALTURA] = {0};
-    Nodo* discos2[MAX_ALTURA] = {0};
-    Nodo* discos3[MAX_ALTURA] = {0};
+    int discos1[MAX_ALTURA] = {0};
+    int discos2[MAX_ALTURA] = {0};
+    int discos3[MAX_ALTURA] = {0};
 
     Nodo* atual = t1->topo;
-    for (int i = 0; i < t1->tamanho; i++) {
-        discos1[i] = atual;
+    for (int i = t1->tamanho - 1; i >= 0; i--) {
+        discos1[i] = atual->disco;
         atual = atual->prox;
     }
 
     atual = t2->topo;
-    for (int i = 0; i < t2->tamanho; i++) {
-        discos2[i] = atual;
+    for (int i = t2->tamanho - 1; i >= 0; i--) {
+        discos2[i] = atual->disco;
         atual = atual->prox;
     }
 
     atual = t3->topo;
-    for (int i = 0; i < t3->tamanho; i++) {
-        discos3[i] = atual;
+    for (int i = t3->tamanho - 1; i >= 0; i--) {
+        discos3[i] = atual->disco;
         atual = atual->prox;
     }
 
-    int largura_max = max_altura;
+    void print_disco(int disco, int max) {
+        int espaco = max - disco;
+        for (int j = 0; j < espaco; j++) printf(" ");
+        if (disco == 0) {
+            printf("|");
+        } else {
+            for (int j = 0; j < disco; j++) printf("*");
+            printf("|");
+            for (int j = 0; j < disco; j++) printf("*");
+        }
+        for (int j = 0; j < espaco; j++) printf(" ");
+    }
 
     printf("\n=== ESTADO DAS TORRES ===\n\n");
 
-    for (int i = max_altura - 1; i >= 0; i--) {
-        int d1 = (i < t1->tamanho && discos1[i]) ? discos1[i]->disco : 0;
-        int d2 = (i < t2->tamanho && discos2[i]) ? discos2[i]->disco : 0;
-        int d3 = (i < t3->tamanho && discos3[i]) ? discos3[i]->disco : 0;
-
-        void print_disco(int disco, int max) {
-            int espaco = max - disco;
-            for (int j = 0; j < espaco; j++) printf(" ");
-            if (disco == 0) {
-                printf("|");
-            } else {
-                for (int j = 0; j < disco; j++) printf("*");
-                printf("|");
-                for (int j = 0; j < disco; j++) printf("*");
-            }
-            for (int j = 0; j < espaco; j++) printf(" ");
-        }
-
-        print_disco(d1, largura_max);
+    for (int i = max_altura - 1; i >= 0; i--)  {
+        print_disco(discos1[i], max_altura);
         printf("     ");
-        print_disco(d2, largura_max);
+        print_disco(discos2[i], max_altura);
         printf("     ");
-        print_disco(d3, largura_max);
+        print_disco(discos3[i], max_altura);
         printf("\n");
     }
 
     for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < largura_max * 2 + 1; j++) printf("=");
+        for (int j = 0; j < max_altura * 2 + 1; j++) printf("=");
         printf("     ");
     }
     printf("\n");
 
-    int total_largura = largura_max * 2 + 1;
-    printf("%*sT1%*s", total_largura / 2 + 1, "", total_largura / 2 + 5, "");
-    printf("%*sT2%*s", total_largura / 2, "", total_largura / 2 + 5, "");
+    int total = max_altura * 2 + 1;
+    printf("%*sT1%*s", total / 2 + 1, "", total / 2 + 5, "");
+    printf("%*sT2%*s", total / 2, "", total / 2 + 5, "");
     printf("T3\n\n");
 }
