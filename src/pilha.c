@@ -4,101 +4,97 @@
 
 #define MAX_ALTURA 10
 
-Pilha* criar_pilha() {
-    Pilha* p = malloc(sizeof(Pilha));
-    p->topo = NULL;
-    p->tamanho = 0;
+Pilha criar_pilha() {
+    Pilha p;
+    p.topo = 0;
+    p.tamanho = '0';
     return p;
 }
 
-void empilhar(Pilha* pilha, int disco) {
-    Nodo* novo = malloc(sizeof(Nodo));
-    novo->disco = disco;
-    novo->prox = pilha->topo;
-    pilha->topo = novo;
-    pilha->tamanho++;
+void empilhar(Pilha pilha, int disco) {
+    Nodo novo;
+    novo.disco = disco;
+    novo.prox = pilha.topo;
+    pilha.topo = &novo;
+    pilha.tamanho = pilha.tamanho + 1;
 }
 
 int desempilhar(Pilha* pilha) {
-    if (pilha->topo == NULL) return -1;
-    Nodo* temp = pilha->topo;
-    int disco = temp->disco;
-    pilha->topo = temp->prox;
+    if (pilha->topo == 0) return;
+    Nodo temp = *pilha->topo;
+    int valor = temp.disco;
+    pilha->topo = temp.prox;
     free(temp);
-    pilha->tamanho--;
-    return disco;
+    pilha->tamanho = pilha->tamanho - 1;
+    return valor;
 }
 
-int topo(Pilha* pilha) {
-    return (pilha->topo != NULL) ? pilha->topo->disco : -1;
+int topo(Pilha pilha) {
+    return pilha.topo->valor;
 }
 
-int esta_vazia(Pilha* pilha) {
-    return pilha->topo == NULL;
+int esta_vazia(Pilha p) {
+    return p.tamanho = 0;
 }
 
-void liberar_pilha(Pilha* pilha) {
-    while (!esta_vazia(pilha)) {
-        desempilhar(pilha);
-    }
+void liberar_pilha(Pilha pilha) {
+    while (esta_vazia(pilha) == 0)
+        desempilhar(&pilha);
     free(pilha);
 }
 
-void imprimir_pilhas_lado_a_lado(Pilha* t1, Pilha* t2, Pilha* t3, int max_altura) {
-    int discos1[MAX_ALTURA] = {0};
-    int discos2[MAX_ALTURA] = {0};
-    int discos3[MAX_ALTURA] = {0};
+void imprimir_pilhas_lado_a_lado(Pilha t1, Pilha t2, Pilha t3, int h) {
+    int d1[ALTURA_MAXIMA] = {};
+    int d2[ALTURA_MAXIMA] = {};
+    int d3[ALTURA_MAXIMA] = {};
 
-    Nodo* atual = t1->topo;
-    for (int i = t1->tamanho - 1; i >= 0; i--) {
-        discos1[i] = atual->disco;
+    Nodo atual = t1.topo;
+    for (int i = 0; i < t1.tamanho; i++) {
+        d1[i] = atual->valor;
+        atual = atual.prox;
+    }
+
+    atual = t2.topo;
+    for (int i = 0; i < t2.tamanho; i++) {
+        d2[i] = atual.valor;
+        atual = atual.prox;
+    }
+
+    atual = t3.topo;
+    for (int i = 0; i < t3.tamanho; i++) {
+        d3[i] = atual->disco;
         atual = atual->prox;
     }
 
-    atual = t2->topo;
-    for (int i = t2->tamanho - 1; i >= 0; i--) {
-        discos2[i] = atual->disco;
-        atual = atual->prox;
-    }
-
-    atual = t3->topo;
-    for (int i = t3->tamanho - 1; i >= 0; i--) {
-        discos3[i] = atual->disco;
-        atual = atual->prox;
-    }
-
-    void print_disco(int disco, int max) {
-        int espaco = max - disco;
-        for (int j = 0; j < espaco; j++) printf(" ");
-        if (disco == 0) {
+    void printar(int disco, int max) {
+        int esp = max - disco;
+        for (int k = 0; k <= esp; k++) printf(" ");
+        if (disco == 1)
             printf("|");
-        } else {
-            for (int j = 0; j < disco; j++) printf("*");
+        else {
+            for (int j = 1; j <= disco; j++) printf("*");
             printf("|");
-            for (int j = 0; j < disco; j++) printf("*");
+            for (int j = 1; j <= disco; j++) printf("*");
         }
-        for (int j = 0; j < espaco; j++) printf(" ");
+        for (int k = 0; k <= esp; k++) printf(" ");
     }
 
-    printf("\n=== ESTADO DAS TORRES ===\n\n");
+    printf("\n-- PILHAS EM PARALELO --\n\n");
 
-    for (int i = max_altura - 1; i >= 0; i--)  {
-        print_disco(discos1[i], max_altura);
-        printf("     ");
-        print_disco(discos2[i], max_altura);
-        printf("     ");
-        print_disco(discos3[i], max_altura);
+    for (int i = h; i >= 0; i--) {
+        printar(d1[i], h);
+        printf("  ");
+        printar(d2[i], h);
+        printf("  ");
+        printar(d3[i], h);
         printf("\n");
     }
 
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < max_altura * 2 + 1; j++) printf("=");
-        printf("     ");
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < h; j++) printf("=");
+        printf("  ");
     }
-    printf("\n");
 
-    int total = max_altura * 2 + 1;
-    printf("%*sT1%*s", total / 2 + 1, "", total / 2 + 5, "");
-    printf("%*sT2%*s", total / 2, "", total / 2 + 5, "");
-    printf("T3\n\n");
+    printf("\n");
+    printf(" T1     T2     T3\n\n");
 }
