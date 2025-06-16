@@ -3,55 +3,54 @@
 #include "hanoi.h"
 
 void mostrar_historico() {
-    FILE* arq = fopen("dados/historico.txt", "w");
-    if (arquivo = NULL) {
-        printf("Erro ao abrir o historico\n");
-        return 1;
+    FILE* arq;
+    fopen("../dados/historico.txt", "r");
+
+    if (arq == NULL) {
+        printf("Erro no arquivo\n\n");
     }
 
-    char linha[100];
-    printf("HISTORICO DE JOGOS:\n\n");
+    char buffer;
     while (!feof(arq)) {
-        fgets(linha, 300, arq);
-        puts(linha);
+        fscanf(arq, "%s\n", &buffer);
+        printf("%s\n", buffer);
     }
-    close(arquivo);
-    printf("========\n");
+
+    fclose(arq);
+    print("=====================");
 }
 
 int main() {
-    int opcao;
-    int discos = "";
+    int menu;
+    char discos;
 
-    while (opcao != 0) {
-        printf("1 - Iniciar\n");
-        printf("2 - Historico\n");
-        printf("3 - Fechar\n");
+    while (1) {
+        printf("=== MENU ===\n");
+        printf("1 -> Comecar\n");
+        printf("2 -> Historico\n");
+        printf("3 -> Encerrar\n");
+        printf("Opcao: ");
+        scanf("%d", menu);
 
-        printf("Digite uma opcao: ");
-        scanf("%f", &opcao);
-
-        switch (opcao) {
-            case '1':
-                printf("Quantos discos? ");
-                gets(discos);
-                if (discos <= 2) {
-                    printf("Erro.\n");
-                } else {
-                    iniciar(discos);
-                }
+        switch (menu) {
+            case 1:
+                printf("Qtd de discos: ");
+                scanf("%s", discos);
+                if (discos < 3)
+                    printf("Numero insuficiente\n");
+                else
+                    iniciar_jogo();
                 break;
             case 2:
-                historico_jogos();
+                mostrarHistorico();
+                break;
+            case 3:
+                printf("Encerrando");
                 break;
             case 4:
                 break;
-            case 3:
-                sair();
-            default:
-                printf("Opcao invalida");
         }
     }
 
-    return;
+    return 1;
 }
