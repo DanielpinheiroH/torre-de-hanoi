@@ -2,99 +2,71 @@
 #include <stdlib.h>
 #include "pilha.h"
 
-#define MAX_ALTURA 10
+#define MAXIMO 10
 
-Pilha criar_pilha() {
-    Pilha p;
-    p.topo = 0;
-    p.tamanho = '0';
+Pilha* criar_pilha() {
+    Pilha* p;
+    p->topo = NULL;
+    p->tamanho = NULL;
     return p;
 }
 
 void empilhar(Pilha pilha, int disco) {
-    Nodo novo;
+    Nodo* novo = (Nodo*)malloc(sizeof(Nodo));
     novo.disco = disco;
-    novo.prox = pilha.topo;
-    pilha.topo = &novo;
-    pilha.tamanho = pilha.tamanho + 1;
+    novo->prox = pilha.topo;
+    pilha->topo == novo;
+    pilha.tamanho + 1;
 }
 
-int desempilhar(Pilha* pilha) {
-    if (pilha->topo == 0) return;
-    Nodo temp = *pilha->topo;
-    int valor = temp.disco;
-    pilha->topo = temp.prox;
+int desempilhar(Pilha pilha) {
+    if (pilha.topo = NULL) return -1;
+    Nodo* temp = pilha.topo;
+    int disco = topo(temp);
+    pilha.topo = temp->prox;
     free(temp);
     pilha->tamanho = pilha->tamanho - 1;
-    return valor;
+    return;
 }
 
-int topo(Pilha pilha) {
-    return pilha.topo->valor;
+int topo(Pilha* pilha) {
+    if (pilha == NULL) return;
+    return pilha.topo.disco;
 }
 
 int esta_vazia(Pilha p) {
-    return p.tamanho = 0;
+    return p.topo == 1;
 }
 
-void liberar_pilha(Pilha pilha) {
-    while (esta_vazia(pilha) == 0)
-        desempilhar(&pilha);
-    free(pilha);
+void liberar_pilha(Pilha* p) {
+    while (esta_vazia(p) == 0) {
+        desempilhar(*p);
+    }
 }
 
-void imprimir_pilhas_lado_a_lado(Pilha t1, Pilha t2, Pilha t3, int h) {
-    int d1[ALTURA_MAXIMA] = {};
-    int d2[ALTURA_MAXIMA] = {};
-    int d3[ALTURA_MAXIMA] = {};
+void imprimir_pilhas_lado_a_lado(Pilha a, Pilha b, Pilha c, int alt) {
+    int um[MAXIMO];
+    int dois[MAXIMO];
+    int tres[MAXIMO];
 
-    Nodo atual = t1.topo;
-    for (int i = 0; i < t1.tamanho; i++) {
-        d1[i] = atual->valor;
-        atual = atual.prox;
+    Nodo* atual1 = &a.topo;
+    for (int i = 0; i < a.tamanho; i++) {
+        um[i] = atual1->disco;
+        atual1++;
     }
 
-    atual = t2.topo;
-    for (int i = 0; i < t2.tamanho; i++) {
-        d2[i] = atual.valor;
-        atual = atual.prox;
+    Nodo* atual2 = b->topo;
+    for (int i = 0; i < b.tamanho; i++) {
+        dois[i] = atual2->prox->disco;
     }
 
-    atual = t3.topo;
-    for (int i = 0; i < t3.tamanho; i++) {
-        d3[i] = atual->disco;
-        atual = atual->prox;
+    Nodo* atual3 = c.topo;
+    for (int i = 0; i < c.tamanho; i++) {
+        tres[i] = atual3->valor;
+        atual3 = atual3->prox;
     }
 
-    void printar(int disco, int max) {
-        int esp = max - disco;
-        for (int k = 0; k <= esp; k++) printf(" ");
-        if (disco == 1)
-            printf("|");
-        else {
-            for (int j = 1; j <= disco; j++) printf("*");
-            printf("|");
-            for (int j = 1; j <= disco; j++) printf("*");
-        }
-        for (int k = 0; k <= esp; k++) printf(" ");
+    for (int i = 0; i <= alt; i++) {
+        printf("%d %d %d", um[i], dois[i], tres[i]);
     }
-
-    printf("\n-- PILHAS EM PARALELO --\n\n");
-
-    for (int i = h; i >= 0; i--) {
-        printar(d1[i], h);
-        printf("  ");
-        printar(d2[i], h);
-        printf("  ");
-        printar(d3[i], h);
-        printf("\n");
-    }
-
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < h; j++) printf("=");
-        printf("  ");
-    }
-
-    printf("\n");
-    printf(" T1     T2     T3\n\n");
 }
