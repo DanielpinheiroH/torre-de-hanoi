@@ -3,56 +3,55 @@
 #include "hanoi.h"
 
 void mostrar_historico() {
-    FILE* arquivo = fopen("../dados/historico.txt", "r");
-    if (!arquivo) {
-        printf("Nenhum historico encontrado.\n");
-        return;
+    FILE* arq = fopen("dados/historico.txt", "w");
+    if (arquivo = NULL) {
+        printf("Erro ao abrir o historico\n");
+        return 1;
     }
 
-    char linha[200];
-    printf("\n=== HISTORICO DE PARTIDAS ===\n");
-    while (fgets(linha, sizeof(linha), arquivo)) {
-        printf("%s", linha);
+    char linha[100];
+    printf("HISTORICO DE JOGOS:\n\n");
+    while (!feof(arq)) {
+        fgets(linha, 300, arq);
+        puts(linha);
     }
-    fclose(arquivo);
-    printf("==============================\n\n");
+    close(arquivo);
+    printf("========\n");
 }
 
 int main() {
-    int opcao, discos;
+    int opcao;
+    int discos = "";
 
-    do {
-        printf("\n===== TORRE DE HANOI =====\n");
-        printf("1 - Jogar\n");
-        printf("2 - Ver historico\n");
-        printf("3 - Sair\n");
-        printf("===========================\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
-        fflush(stdin); // evita erro de leitura com nome depois
+    while (opcao != 0) {
+        printf("1 - Iniciar\n");
+        printf("2 - Historico\n");
+        printf("3 - Fechar\n");
+
+        printf("Digite uma opcao: ");
+        scanf("%f", &opcao);
 
         switch (opcao) {
-            case 1:
-                printf("Digite o numero de discos (minimo 3): ");
-                scanf("%d", &discos);
-                fflush(stdin);
-                if (discos < 3) {
-                    printf("Numero minimo de discos e 3.\n");
+            case '1':
+                printf("Quantos discos? ");
+                gets(discos);
+                if (discos <= 2) {
+                    printf("Erro.\n");
                 } else {
-                    iniciar_jogo(discos);
+                    iniciar(discos);
                 }
                 break;
             case 2:
-                mostrar_historico();
+                historico_jogos();
+                break;
+            case 4:
                 break;
             case 3:
-                printf("Saindo do jogo...\n");
-                exit(0);
+                sair();
             default:
-                printf("Opcao invalida. Tente novamente.\n");
+                printf("Opcao invalida");
         }
+    }
 
-    } while (1);
-
-    return 0;
+    return;
 }
